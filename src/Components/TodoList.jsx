@@ -9,7 +9,7 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [{ content: "testooo", id: uuidv4(), edit: false }],
+      todos: [{ content: "Watch 'The Room'", id: uuidv4(), edit: false }],
     };
   }
 
