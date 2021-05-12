@@ -33,7 +33,7 @@ class NewTodoForm extends Component {
             name="title"
             type="text"
             onChange={this.handleInput}
-            value={this.state.name}
+            value={this.state.title}
           ></input>
           <label htmlFor="content">Content: </label>
           <input

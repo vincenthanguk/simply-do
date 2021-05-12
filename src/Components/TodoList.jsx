@@ -27,9 +27,23 @@ class TodoList extends Component {
     }));
   };
 
+  deleteTodo = (id) => {
+    this.setState((st) => ({
+      todos: st.todos.filter((todo) => todo.id !== id),
+    }));
+  };
+
   render() {
     const todos = this.state.todos.map((todo) => {
-      return <Todo key={todo.id} title={todo.title} content={todo.content} />;
+      return (
+        <Todo
+          key={todo.id}
+          id={todo.id}
+          title={todo.title}
+          content={todo.content}
+          handleClick={this.deleteTodo}
+        />
+      );
     });
 
     return (
