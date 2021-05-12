@@ -6,8 +6,7 @@ class Todo extends Component {
     return (
       <div className="Todo">
         <h2>
-          Title: {this.props.title} | Content: {this.props.content} |
-          <button>X</button>
+          {this.props.title}: {this.props.content} <button>X</button>
         </h2>
       </div>
     );
