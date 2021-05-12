@@ -32,7 +32,8 @@ class NewTodoForm extends Component {
             onChange={this.handleInput}
             value={this.state.content}
             placeholder="...enter todo item"
-          ></input>
+          />
+          <button>Add</button>
         </form>
       </div>
     );

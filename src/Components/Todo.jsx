@@ -7,6 +7,7 @@ class Todo extends Component {
     this.state = {
       isEditing: false,
       todo: this.props.content,
+      isClicked: false,
     };
   }
 
@@ -31,12 +32,16 @@ class Todo extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  liClicked = () => {
+    this.setState({ isClicked: !this.state.isClicked });
+  };
+
   render() {
     let result;
     if (this.state.isEditing) {
       result = (
-        <div>
-          <form onSubmit={this.handleUpdate}>
+        <div className="Todo">
+          <form className="Todo-edit-form" onSubmit={this.handleUpdate}>
             <input
               type="text"
               value={this.state.todo}
@@ -49,10 +54,21 @@ class Todo extends Component {
       );
     } else {
       result = (
-        <div>
-          <button onClick={this.toggleForm}>Edit</button>
-          <button onClick={this.handleDelete}>X</button>
-          <li>{this.props.content} </li>
+        <div className="Todo">
+          <li
+            className={`Todo-li${this.state.isClicked ? " clicked" : ""}`}
+            onClick={this.liClicked}
+          >
+            {this.props.content}
+          </li>
+          <div className="Todo-buttons">
+            <button onClick={this.toggleForm}>
+              <i className="fas fa-pen"></i>
+            </button>
+            <button onClick={this.handleDelete}>
+              <i className="fas fa-trash"></i>
+            </button>
+          </div>
         </div>
       );
     }
