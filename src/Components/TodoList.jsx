@@ -9,16 +9,9 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [{ title: "test", content: "testooo", id: uuidv4() }],
-      todoToggle: false,
+      todos: [{ content: "testooo", id: uuidv4(), edit: false }],
     };
   }
-
-  handleClick = () => {
-    this.setState((st) => {
-      return { todoToggle: !st.todoToggle };
-    });
-  };
 
   addTodo = (todo) => {
     const newTodo = { ...todo, id: uuidv4() };
@@ -33,25 +26,35 @@ class TodoList extends Component {
     }));
   };
 
+  updateTodo = (id, updatedTodo) => {
+    const updatedTodos = this.state.todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, content: updatedTodo };
+      }
+      return todo;
+    });
+    this.setState({ todos: updatedTodos });
+  };
+
   render() {
     const todos = this.state.todos.map((todo) => {
       return (
         <Todo
           key={todo.id}
           id={todo.id}
-          title={todo.title}
           content={todo.content}
-          handleClick={this.deleteTodo}
+          handleDelete={this.deleteTodo}
+          handleUpdate={this.updateTodo}
         />
       );
     });
 
     return (
       <div className="TodoList">
-        <h1>TodoList</h1>
-        {todos}
-        <button onClick={this.handleClick}>New Todo</button>
-        {this.state.todoToggle && <NewTodoForm handleSubmit={this.addTodo} />}
+        <h1>Simple Todo</h1>
+        <ul>{todos}</ul>
+
+        <NewTodoForm handleSubmit={this.addTodo} />
       </div>
     );
   }

@@ -18,7 +18,6 @@ class NewTodoForm extends Component {
     e.preventDefault();
     this.props.handleSubmit(this.state);
     this.setState({
-      title: "",
       content: "",
     });
   };
@@ -26,23 +25,14 @@ class NewTodoForm extends Component {
   render() {
     return (
       <div className="NewTodoForm">
-        <form>
-          <h2>New Todo</h2>
-          <label htmlFor="title">Title: </label>
-          <input
-            name="title"
-            type="text"
-            onChange={this.handleInput}
-            value={this.state.title}
-          ></input>
-          <label htmlFor="content">Content: </label>
+        <form onSubmit={this.handleSubmit}>
           <input
             name="content"
             type="text"
             onChange={this.handleInput}
             value={this.state.content}
+            placeholder="...enter todo item"
           ></input>
-          <button onClick={this.handleSubmit}>Submit!</button>
         </form>
       </div>
     );
